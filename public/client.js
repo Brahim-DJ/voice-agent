@@ -270,7 +270,8 @@ function connectWebSocket() {
     return new Promise((resolve, reject) => {
         isElevenLabsReady = false; // Reset readiness flag
         // Use relative path for easier deployment
-        const wsUrl = `ws://${window.location.host}/audio-stream`;
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const wsUrl = `${protocol}//${window.location.host}/audio-stream`;
         console.log(`[WS] Connecting to backend at ${wsUrl}`);
         ws = new WebSocket(wsUrl);
 
